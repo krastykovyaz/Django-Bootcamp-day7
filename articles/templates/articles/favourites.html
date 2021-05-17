@@ -1,0 +1,12 @@
+{% extends "articles/base.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+<ol>
+{% for object in latest_articles %}
+    <li><a href="{% url 'article-detail' pk=object.article_id %}">{{ object.article }}</a></li>
+{% endfor %}
+</ol>
+    {% else %}
+    <h3>U need to be authorized</h3>
+    {% endif %}
+{% endblock %}

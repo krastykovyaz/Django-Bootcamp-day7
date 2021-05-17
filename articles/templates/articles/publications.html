@@ -1,0 +1,22 @@
+{% extends "articles/base.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+<h3>Publications</h3>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Created date</th>
+            <th>Synopsis</th>
+        </tr>
+        {% for object in latest_articles %}
+            <tr>
+                <td><a href="{% url 'article-detail' pk=object.id %}">{{ object.title }}</a></td>
+                <td>{{ object.created }}</td>
+                <td>{{ object.synopsis }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h3>U need to be authorized</h3>
+    {% endif %}
+{% endblock %}
